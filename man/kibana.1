@@ -1,0 +1,86 @@
+.\" ===========================================================================
+.TH KIBANA 1 "" "1.00"
+.\" ===========================================================================
+.SH NAME
+kibana \(em connect to Listing Service Vpc
+.\" ===========================================================================
+.SH SYNOPSIS
+\fBkibana\fP [\fB-uv\fP] [\fB\--help\fP] [\fB--update\fP] [\fB--view\fP] [dg]
+.\" ===========================================================================
+.SH OPTIONS
+\fBkibana\fP options can be prefixed with either one or two hyphens. Thus,
+\fB\-u\fP and \fB\-\^\-update\fP are equivalent.
+.\" ===========================================================================
+.TP \w'\fB\-\^\-version\fP'u+3n
+.B -help
+Display a brief help message on \fIstdout\fP, giving a usage description, and
+then terminate immediately with a success return code.
+.\" ---------------------------------------------------------------------------
+.TP
+.B -update
+Update \fIipv4\fP address, and then terminate immediately with a success return
+code. If an instance is provided, that instance's \fIipv4\fP address is updated;
+otherwise, all instances' \fIipv4\fP addresses are updated.
+.\" ---------------------------------------------------------------------------
+.TP
+.B \-view
+View \fIipv4\fP address, and then terminate immediately with a success return
+code. If an instance is provided, that instance's \fIipv4\fP address is
+returned; otherwise, all isntances' \fIipv4\fP addresses are returned.
+.\" ===========================================================================
+.SH DESCRIPTION
+The Listing Service is set running in a private Vpc. As a result, in order to
+access its outcome via Amazon OpenSearch Service, a private connection needs to
+be established. The steps are detailed in the wiki below. \fBkibana\fP provides
+a convenience wrapper to semi-automate a few steps in the wiki.
+.PP
+\fIhttps://w.amazon.com/bin/view/SSPA/PASF/CAMP/airstream/Services/CAMPListingService/#HKibanasetup\fP
+.PP
+One important feature is that the EC2 public \fIipv4\fP addrss is required to
+connect to Kibana. However, this \fIipv4\fP address can change due to the
+dynamic nature of EC2 instance. Here, we provide a flag \fB-u\fP or
+\fB--update\fP to update the \fIipv4\fP address so that no more manual lookup
+is required.
+.\" ===========================================================================
+.SH EXAMPLES
+Connect to \fIAlphaNA\fP with
+.PP
+.RS
+\&\fC$ kibana\fP
+.RE
+.PP
+Connect to \fIBetaNA\fP with
+.PP
+.RS
+\&\fC$ kibana BetaNA\fP
+.RE
+.PP
+Update all instances' \fIipv4\fP addresses with
+.PP
+.RS
+\&\fC$ kibana --update\fP
+.RE
+.PP
+Update the \fIipv4\fP address of \fIBetaNA\fP with
+.PP
+.RS
+\&\fC$ kibana --update BeatNA\fP
+.RE
+.PP
+View all instances' \fIipv4\fP addresses with
+.PP
+.RS
+\&\fC$ kibana --view\fP
+.RE
+.PP
+View the \fIipv4\fP address of \fIBetaNA\fP with
+.PP
+.RS
+\&\fC$ kibana --view BetaNA\fP
+.RE
+.PP
+.\" ===========================================================================
+.SH "SEE ALSO"
+.BR ssh (1)
+.\" ===========================================================================
+
