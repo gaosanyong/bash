@@ -13,3 +13,7 @@ echo $PATH | tr : \\n
 # | non-interactive | ~/.bash_login    | BASH_ENV  |
 # |                 | ~/.profile       |           |
 # --------------------------------------------------
+
+# trick 4: check how many shells deep 
+#          SHLVL starts at 2 when using tmux
+echo $SHLVL 
